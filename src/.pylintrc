@@ -1,6 +1,9 @@
 [MAIN]
 #init-hook="from pylint.config import find_pylintrc; import os, sys; sys.path.append(os.path.dirname(find_pylintrc()))"
-init-hook='import sys; sys.path.append(".")'
+#init-hook='import sys; sys.path.append(".")'
+init-hook='from distutils.sysconfig import get_python_lib; sys.path.append(get_python_lib())'
+#init-hook='import site; sys.path.append(site.getsitepackages()[0])'
+
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
 # only in one or another interpreter, leading to false positives when analysed.
@@ -88,7 +91,7 @@ persistent=yes
 
 # Minimum Python version to use for version dependent checks. Will default to
 # the version used to run pylint.
-py-version=3.9
+py-version=3.10
 
 # Discover python modules and packages in the file system subtree.
 recursive=no
